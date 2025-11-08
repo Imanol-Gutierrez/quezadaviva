@@ -1,0 +1,118 @@
+{
+  "name": "Drive-a-Supabase",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1D3g__PQDKqZyod6Sruk0Kj9AEbQaI3F-",
+          "mode": "list",
+          "cachedResultName": "quezadaviva-conocimiento",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1D3g__PQDKqZyod6Sruk0Kj9AEbQaI3F-"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a88c0e8a-b3d4-4153-9a92-8031d3a9a057",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AqWG4gWueDlu6g2P",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "command": "node \"C:\\Users\\cardo\\OneDrive\\Desktop\\Desarrollo web V2\\quezadaviva\\src\\embed-script.mjs\" \"{{ $trigger.json.name }}\" \"{{ $node[\"Google Drive\"].binary.data.toString() }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "0184034f-5f8c-4605-b9bd-9981235b9704",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1bDxoxy4ogADpF9R_Dv503MCqsZGVWHRG",
+          "mode": "list",
+          "cachedResultName": "historia.md",
+          "cachedResultUrl": "https://drive.google.com/file/d/1bDxoxy4ogADpF9R_Dv503MCqsZGVWHRG/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "536217a3-4003-44fe-9ccd-dabd0ace62d6",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AqWG4gWueDlu6g2P",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1af6f86a-52aa-4ba6-a5c4-c279dd541491",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a09a47f1331668f913656e7f52a28391d14d794fc2c6c12eff0091269d379452"
+  },
+  "id": "vORYhA5X5MtNyq3M",
+  "tags": []
+}
